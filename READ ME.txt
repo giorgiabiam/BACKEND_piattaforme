@@ -1,0 +1,12 @@
+Abilitare HTTPS in un progetto Spring
+    1) generare un self-signed certificate (formato: PKCS/JKS)
+    2) creare un set di cryptographic keys (con Keytool di Java), e salvarle in un keystore
+       2.1) ricordati di settare la password e l'alias del keystore
+    3) configurare ssl di Spring nel file  .yaml
+    4) il file che contiene il certificato deve stare nella directory del progetto
+    5) creare @bean di configurazione Spring Security (ricordati di aggiungfere la dipendenza)
+
+
+ TODO
+    (per il login) disabilita i cors e i crsf token (nel bean di configuraziobne spring security)
+    studiare: autenticazione session based oppure token based
