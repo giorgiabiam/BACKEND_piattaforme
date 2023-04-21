@@ -43,13 +43,13 @@ public class AcquistoService {
 
     @Transactional(readOnly = false)
     public Acquisto newAcquisto(Acquisto a) throws QuantitaNonDisponibile {
-        Utente acquirente=ur.getOne(a.getIDacquirente());
-//        a.setAcquirente(acquirente);
+        Utente acquirente=ur.getOne(a.getAcquirente().getID());
+        a.setAcquirente(acquirente);
 
         //devo controllare che in magazzino ci sia quantita sufficiente per ogni prodotto
         for(ProdottoAcquistato p : a.getListaProdotti()){
-            ProdottoInMagazzino prodottoReale=pr.getOne(p.getIDprodottoReale());
-            //p.setProdottoReale(prodottoReale);
+            ProdottoInMagazzino prodottoReale=pr.getOne(p.getProdottoReale().getCodice());
+            p.setProdottoReale(prodottoReale);
             if( (p.getProdottoReale().getQta() - p.getQtaAcquistata())< 0)
                 throw new QuantitaNonDisponibile();
         }

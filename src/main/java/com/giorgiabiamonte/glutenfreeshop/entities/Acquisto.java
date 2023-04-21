@@ -47,14 +47,11 @@ public class Acquisto {
         return tot;
     }
 
-    @Column(name="IDacquirente", nullable=false)
-    private int IDacquirente;   //non serve posso ottenerlo
-
     //più acquisti per lo stesso acquirente
-    private Utente acquirente;
-
     @ManyToOne
     @JoinTable(name="utente")
+    private Utente acquirente;
+
     public Utente getAcquirente(){
         return acquirente;
     }
@@ -62,6 +59,6 @@ public class Acquisto {
         this.acquirente=acquirente;
     }
 
-    @OneToMany(mappedBy = "acquisto")
+    @OneToMany
     private List<ProdottoAcquistato> listaProdotti;
 }
