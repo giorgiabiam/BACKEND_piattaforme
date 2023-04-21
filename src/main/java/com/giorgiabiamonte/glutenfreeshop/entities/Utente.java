@@ -41,6 +41,6 @@ public class Utente {
     @Column(name="cognome", nullable=false)
     private String cognome;
 
-    @OneToMany
+    @OneToMany(mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti;
 }

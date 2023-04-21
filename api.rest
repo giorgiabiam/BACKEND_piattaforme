@@ -1,5 +1,5 @@
 ###
-GET https://localhost:8080/utenti/all
+GET https://localhost:8443/utenti/all
 ###
 GET https://localhost:8080/prodotti/all
 

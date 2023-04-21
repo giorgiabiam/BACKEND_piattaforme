@@ -11,12 +11,6 @@ public class GlutenFreeShopApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GlutenFreeShopApplication.class, args);
-        System.out.println("FUNZIONA");
-    }
-
-    @GetMapping
-    public String prova(){
-        return "prova";
     }
 
 }

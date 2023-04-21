@@ -22,11 +22,12 @@ public class AcquistoController {
     @PostMapping("/new")
     public ResponseEntity<Acquisto> newAcquisto(Acquisto a){
         try{
-            Acquisto nuovoAcquisto= as.newAcquisto(a);
-            return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);
+//            Acquisto nuovoAcquisto= as.newAcquisto(a);
+//            return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);
         } catch (QuantitaNonDisponibile e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Quantità insufficiente per soddisfare la richiesta", e);
         }
+        return null;
     }
 
     @GetMapping("/{idAcquirente}")

@@ -47,7 +47,7 @@ public class Acquisto {
 
     //più acquisti per lo stesso acquirente
     @ManyToOne
-    @JoinColumn(name="utente")
+    @JoinColumn(name="acquirente")
     private Utente acquirente;
 
     public Utente getAcquirente(){

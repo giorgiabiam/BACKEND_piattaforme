@@ -22,7 +22,9 @@ public class UtenteService {
 
     @Transactional
     public List<Utente> getAll() {
-        return ur.findAll();
+        var res = ur.findAll();
+        System.out.println(res);
+        return res;
     }
 
     @Transactional

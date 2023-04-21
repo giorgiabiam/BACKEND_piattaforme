@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AcquistoRepository extends JpaRepository<Acquisto, Integer> {
     Acquisto findAcquistoByID(Integer ID);
-    List<Acquisto> findByAcquirente(Utente utente);
+//    List<Acquisto> findByAcquirente(Utente utente);
 }

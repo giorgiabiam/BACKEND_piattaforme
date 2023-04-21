@@ -20,6 +20,8 @@ public class UtenteController {
     @GetMapping("/all")
     public ResponseEntity<List<Utente>> getAll(){
         List<Utente> utenti= us.getAll();
+        System.out.println("controller");
+        System.out.println(utenti);
         return new ResponseEntity<>(utenti, HttpStatus.OK);
     }
 
