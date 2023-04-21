@@ -16,25 +16,22 @@ public class ProdottoAcquistato {
     @Column(name="codice", nullable = false)
     private int codice;
 
-//    @Column(name="idprodotto_reale")
-//    private int IDprodottoReale;   //non serve posso ottenerlo
-
     @Column(name="qta_acquistata")
     private int qtaAcquistata;
 
     @ManyToOne
-    @JoinColumn(name="prodotto")
+    @JoinColumn(name="prodotto_reale")
     @JsonIgnore
     private ProdottoInMagazzino prodottoReale;
 
-    @ManyToOne
-    @JoinTable(name = "Acquisto")
-    private Acquisto acquisto;
-
-    public Acquisto getAcquisto(){
-        return acquisto;
-    }
-    public void setAcquisto(){
-        this.acquisto=acquisto;
-    }
+//    @ManyToOne
+//    @JoinTable(name = "Acquisto")
+//    private Acquisto acquisto;
+//
+//    public Acquisto getAcquisto(){
+//        return this.acquisto;
+//    }
+//    public void setAcquisto(){
+//        this.acquisto=acquisto;
+//    }
 }

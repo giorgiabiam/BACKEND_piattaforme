@@ -41,7 +41,6 @@ public class Utente {
     @Column(name="cognome", nullable=false)
     private String cognome;
 
-    @OneToMany(mappedBy = "acquirente")
-    @JsonIgnore
+    @OneToMany
     private List<Acquisto> listaAcquisti;
 }

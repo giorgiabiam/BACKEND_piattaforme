@@ -1,8 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.entities;
 
-// import javax.persistence.*;
 import jakarta.persistence.*;
-import jakarta.transaction.Transactional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -49,7 +47,7 @@ public class Acquisto {
 
     //più acquisti per lo stesso acquirente
     @ManyToOne
-    @JoinTable(name="utente")
+    @JoinColumn(name="utente")
     private Utente acquirente;
 
     public Utente getAcquirente(){
