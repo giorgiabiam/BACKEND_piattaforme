@@ -1,6 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.config;
 
-import com.giorgiabiamonte.glutenfreeshop.entities.Utente;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

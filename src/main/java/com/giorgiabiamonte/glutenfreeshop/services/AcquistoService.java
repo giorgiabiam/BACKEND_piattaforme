@@ -1,10 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.services;
 
-import com.giorgiabiamonte.glutenfreeshop.entities.Acquisto;
-import com.giorgiabiamonte.glutenfreeshop.entities.ProdottoAcquistato;
-import com.giorgiabiamonte.glutenfreeshop.entities.ProdottoInMagazzino;
-import com.giorgiabiamonte.glutenfreeshop.entities.Utente;
-import com.giorgiabiamonte.glutenfreeshop.exception.QuantitaNonDisponibile;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
 import com.giorgiabiamonte.glutenfreeshop.repositories.AcquistoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoAcquistatoRepo;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
@@ -14,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
-import java.util.LinkedList;
+
 import java.util.List;
 
 @Service

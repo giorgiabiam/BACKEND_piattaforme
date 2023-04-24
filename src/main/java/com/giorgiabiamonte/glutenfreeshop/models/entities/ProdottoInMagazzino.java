@@ -1,8 +1,7 @@
-package com.giorgiabiamonte.glutenfreeshop.entities;
+package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
 // import javax.persistence.*;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

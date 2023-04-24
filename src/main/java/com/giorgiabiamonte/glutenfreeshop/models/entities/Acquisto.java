@@ -1,4 +1,4 @@
-package com.giorgiabiamonte.glutenfreeshop.entities;
+package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;

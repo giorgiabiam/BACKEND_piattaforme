@@ -15,8 +15,11 @@ public class SecurityConfig {
 //                .and()
 //                .httpBasic();
         http.authorizeRequests()
+
                 .requestMatchers("/**")
                 .permitAll();
+        http.csrf().disable();
+
         return http.build();
     }
 }

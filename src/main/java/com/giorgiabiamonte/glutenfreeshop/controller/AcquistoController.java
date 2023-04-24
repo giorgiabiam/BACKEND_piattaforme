@@ -1,6 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.controller;
 
-import com.giorgiabiamonte.glutenfreeshop.entities.Acquisto;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
 import com.giorgiabiamonte.glutenfreeshop.exception.QuantitaNonDisponibile;
 import com.giorgiabiamonte.glutenfreeshop.services.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/acquisti")
-@CrossOrigin(origins="http://localhost:4200")
+//@CrossOrigin(origins="*")  //TODO
 public class AcquistoController {
 
     @Autowired

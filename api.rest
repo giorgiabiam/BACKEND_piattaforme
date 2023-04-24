@@ -3,3 +3,39 @@ GET https://localhost:8443/utenti/all
 ###
 GET https://localhost:8080/prodotti/all
 
+###
+GET https://localhost:8443/path2/prova
+###
+POST https://localhost:8443/path2/prova?new=angelo
+###
+POST https://localhost:8443/path2/prova?new=invalidate
+
+###
+GET https://localhost:8443/prova/sessionscoped/
+###
+POST https://localhost:8443/prova/sessionscoped
+
+
+giovanni
+
+###
+GET https://localhost:8443/requestscoped/
+###
+POST https://localhost:8443/requestscoped/post
+
+giorgia
+
+###
+GET https://localhost:8443/applicationscoped/
+###
+POST https://localhost:8443/applicationscoped/post
+
+angelo
+
+
+
+
+
+
+
+

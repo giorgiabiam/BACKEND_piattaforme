@@ -1,6 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.repositories;
 
-import com.giorgiabiamonte.glutenfreeshop.entities.Utente;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

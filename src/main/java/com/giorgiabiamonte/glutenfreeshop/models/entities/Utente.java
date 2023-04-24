@@ -1,6 +1,4 @@
-package com.giorgiabiamonte.glutenfreeshop.entities;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
 import lombok.*;
 // import javax.persistence.*;
@@ -43,4 +41,7 @@ public class Utente {
 
     @OneToMany(mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti;
+
+    @OneToMany
+    private List<ProdottoInMagazzino> preferiti;
 }

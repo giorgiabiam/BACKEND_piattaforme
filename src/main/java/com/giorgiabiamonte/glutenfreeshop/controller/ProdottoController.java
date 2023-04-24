@@ -1,6 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.controller;
 
-import com.giorgiabiamonte.glutenfreeshop.entities.ProdottoInMagazzino;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.services.ProdottoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
