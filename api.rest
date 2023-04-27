@@ -1,7 +1,11 @@
 ###
 GET https://localhost:8443/utenti/all
 ###
-GET https://localhost:8080/prodotti/all
+GET https://localhost:8443/utenti/1
+###
+GET https://localhost:8443/utenti/login/paola_guarasci/ppppp
+###
+GET https://localhost:8443/prodotti/all
 
 ###
 GET https://localhost:8443/path2/prova

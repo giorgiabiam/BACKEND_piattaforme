@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/prodotti")
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 public class ProdottoController {
 
     @Autowired
@@ -25,9 +25,5 @@ public class ProdottoController {
         List<ProdottoInMagazzino> prodotti= ps.getAll();
         return new ResponseEntity<>(prodotti, HttpStatus.OK);
     }
-
-    //@Version
-    //@JsonIgnore
-    //private long version  //per l'accesso concorrente
 
 }

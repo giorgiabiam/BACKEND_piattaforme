@@ -1,7 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
 import lombok.*;
-// import javax.persistence.*;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.GeneratedValue;
@@ -39,9 +38,9 @@ public class Utente {
     @Column(name="cognome", nullable=false)
     private String cognome;
 
-    @OneToMany(mappedBy = "acquirente")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ProdottoInMagazzino> preferiti;
 }

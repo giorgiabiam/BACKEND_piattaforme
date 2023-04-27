@@ -20,8 +20,7 @@ public class UtenteController {
     @GetMapping("/all")
     public ResponseEntity<List<Utente>> getAll(){
         List<Utente> utenti= us.getAll();
-        System.out.println("controller");
-        System.out.println(utenti);
+        System.out.println("lista utenti" + utenti);
         return new ResponseEntity<>(utenti, HttpStatus.OK);
     }
 
@@ -37,10 +36,13 @@ public class UtenteController {
         return new ResponseEntity<>(nuovoUtente, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/login/{username}/{password}")
+    @RequestMapping(value = "/login/{username}/{password}", method = RequestMethod.GET)
     public ResponseEntity<Utente> login(@PathVariable("username") String username, @PathVariable("password") String password){
-        if(us.esisteUtente(username,password))
+        if(us.esisteUtente(username, password)){
+            System.out.print("login ok");
             return new ResponseEntity<>(us.findUtenteByUsername(username), HttpStatus.OK);
+        }
+        System.out.println("login non riuscito");
         return new ResponseEntity<>(null,HttpStatus.OK);
     }
 
