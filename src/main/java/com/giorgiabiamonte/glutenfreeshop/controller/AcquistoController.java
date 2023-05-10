@@ -1,5 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.controller;
 
+import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
 import com.giorgiabiamonte.glutenfreeshop.exception.QuantitaNonDisponibile;
 import com.giorgiabiamonte.glutenfreeshop.services.AcquistoService;
@@ -13,26 +14,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/acquisti")
-//@CrossOrigin(origins="*")  //TODO
+@CrossOrigin(origins="*")  //TODO
 public class AcquistoController {
 
     @Autowired
     private AcquistoService as;
 
-    @PostMapping("/new")
-    public ResponseEntity<Acquisto> newAcquisto(Acquisto a){
+    @PostMapping("/")  //TODO carrello e utente li ho nella sessione
+    public ResponseEntity<Acquisto> newAcquisto(Carrello carrello, int IDutente){ //HttpServletRequest req
         try{
-//            Acquisto nuovoAcquisto= as.newAcquisto(a);
-//            return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);
+//            Carrello carrello = req.getSession().getAttribute("carrello");
+//            int IDutente = req.getSession().getAttribute("IDutente");
+
+            Acquisto nuovoAcquisto = as.newAcquisto(carrello, IDutente);
+            return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);
         } catch (QuantitaNonDisponibile e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Quantità insufficiente per soddisfare la richiesta", e);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Acquisto non andato a buon fine", e);
         }
-        return null;
     }
 
     @GetMapping("/{idAcquirente}")
-    public ResponseEntity<List<Acquisto>> acquistiUtente(@PathVariable("idAcquirente") int id){
-        List<Acquisto> listaAcquisti= as.acquistiUtente(id);
+    public ResponseEntity<List<Acquisto>> getAcquistiUtente(@PathVariable("idAcquirente") int id){
+        List<Acquisto> listaAcquisti= as.getAcquistiUtente(id);
         return new ResponseEntity<>(listaAcquisti, HttpStatus.OK);
     }
 }

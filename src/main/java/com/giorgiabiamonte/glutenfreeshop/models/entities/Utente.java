@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import java.util.List;
 
 @Data
+@Builder
+@NoArgsConstructor @AllArgsConstructor
 @Entity
 @Table(name="Utente")
 public class Utente {
@@ -17,7 +19,7 @@ public class Utente {
     @Column(name="ID", nullable=false)
     private Integer ID;
 
-    @Column(name="username", nullable=false)
+    @Column(name="username", nullable=false , unique = true)
     private String username;
 
     @Column(name="password", nullable=false)
@@ -38,9 +40,9 @@ public class Utente {
     @Column(name="cognome", nullable=false)
     private String cognome;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "acquirente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private List<ProdottoInMagazzino> preferiti;
 }

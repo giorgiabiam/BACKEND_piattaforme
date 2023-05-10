@@ -1,11 +1,11 @@
 ###
-GET https://localhost:8443/utenti/all
+GET https://localhost:8443/utenti/
 ###
 GET https://localhost:8443/utenti/1
 ###
 GET https://localhost:8443/utenti/login/paola_guarasci/ppppp
 ###
-GET https://localhost:8443/prodotti/all
+GET https://localhost:8443/prodotti/
 
 ###
 GET https://localhost:8443/path2/prova
@@ -36,7 +36,11 @@ POST https://localhost:8443/applicationscoped/post
 
 angelo
 
+###
+POST https://localhost:8443/acquisti/new
 
+###
+POST https://localhost:8443/utenti/1
 
 
 

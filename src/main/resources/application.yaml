@@ -19,7 +19,7 @@ server:
     port: 8443
     ssl:
         key-store-type: PKCS12
-        key-store: classpath:paola_certificato.p12
+        key-store: classpath:ssl_certificato.p12
         key-store-password: paola2023
         key-alias: paola
         enabled: true

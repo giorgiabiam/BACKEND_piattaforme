@@ -24,14 +24,4 @@ public class ProdottoAcquistato {
     @JsonIgnore
     private ProdottoInMagazzino prodottoReale;
 
-//    @ManyToOne
-//    @JoinTable(name = "Acquisto")
-//    private Acquisto acquisto;
-//
-//    public Acquisto getAcquisto(){
-//        return this.acquisto;
-//    }
-//    public void setAcquisto(){
-//        this.acquisto=acquisto;
-//    }
 }

@@ -1,17 +1,17 @@
 package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
-// import javax.persistence.*;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor  @NoArgsConstructor
 @Entity
 @Table(name="Prodotto")
 public class ProdottoInMagazzino {
+
 
     @Id
     @Column(name="codice", nullable=false)
@@ -28,9 +28,10 @@ public class ProdottoInMagazzino {
     private int qta;
 
     @Column(name="img")
-    private String img; //url dell'immagine del prodotto
+    private String img; //url dell'immagine del prodotto //TODO
 
     @Column(name="descrizione")
     private String descrizione;
+
 
 }

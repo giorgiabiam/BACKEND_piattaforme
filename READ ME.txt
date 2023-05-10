@@ -5,8 +5,8 @@ Abilitare HTTPS in un progetto Spring
     3) configurare ssl di Spring nel file  .yaml
     4) il file che contiene il certificato deve stare nella directory del progetto
     5) creare @bean di configurazione Spring Security (ricordati di aggiungfere la dipendenza)
-
+---il certificato si genera tramite comando di powershell (vedi Baeldung)----
 
  TODO
-    (per il login) disabilita i cors e i crsf token (nel bean di configuraziobne spring security)
-    studiare: autenticazione session based oppure token based
+    (per il login) disabilita i cors e i crsf token (nel bean di configurazione spring security)
+    studiare: autenticazione session based oppure token based + link angelo whatsapp

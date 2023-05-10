@@ -14,13 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/prodotti")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="*")  //TODO
 public class ProdottoController {
 
     @Autowired
     private ProdottoService ps;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<ProdottoInMagazzino>> getAll(){
         List<ProdottoInMagazzino> prodotti= ps.getAll();
         return new ResponseEntity<>(prodotti, HttpStatus.OK);

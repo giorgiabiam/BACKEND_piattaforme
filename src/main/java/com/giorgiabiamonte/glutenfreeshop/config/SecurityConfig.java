@@ -9,17 +9,14 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .httpBasic();
         http.authorizeRequests()
-
                 .requestMatchers("/**")
                 .permitAll();
-        http.csrf().disable();
 
+        http.csrf().disable();
         return http.build();
     }
+
+   //repo github esercitatore
+  //  https://github.com/Franco7Scala/SpringProjectPSW/blob/master/src/main/java/it/frankladder/fakestore/configurations/SecurityConfiguration.java
 }
