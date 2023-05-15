@@ -33,5 +33,8 @@ public class ProdottoInMagazzino {
     @Column(name="descrizione")
     private String descrizione;
 
+    @Version
+    private int version;
+
 
 }

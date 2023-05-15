@@ -1,5 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.services;
 
+import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,5 @@ public class ProdottoService {
     public List<ProdottoInMagazzino> getAll(){
         return pr.findAll();
     }
-
 
 }

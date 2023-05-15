@@ -31,8 +31,11 @@ public class UtenteService {
     }
 
     @Transactional
+    public Utente findByUsername(String username){ return ur.findByUsername(username); }
+
+    @Transactional
     public Utente login(String username, String password){
-        if( !ur.existsByUsernameAndPassword(username, password) ){//username o password errati
+        if( !ur.existsByUsernameAndPassword(username, password) ){   //username o password errati
             return null;
         }
         else{

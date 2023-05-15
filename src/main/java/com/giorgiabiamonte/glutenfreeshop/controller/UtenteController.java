@@ -1,5 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.controller;
 
+import com.giorgiabiamonte.glutenfreeshop.models.LoginRequest;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.services.UtenteService;
@@ -7,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,24 +33,26 @@ public class UtenteController {
 
 
     @PostMapping(value = "/login")
-    public ResponseEntity<Utente> login(@RequestBody Utente userData){
+    public ResponseEntity<Utente> login(@Valid @RequestBody LoginRequest req) {
+//ho creato un modello LoginRequest che ha solo username e password invece di usare il modello Utente
+//        con tutti gli altri campi che sarebbero  null
+
 //      TODO usare un Encoder per la password
 //      BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//      String encodedPassword = passwordEncoder.encode(userData.getPassword());
+//      String encodedPassword = passwordEncoder.encode(req.getPassword());
 
-        Utente u = us.login(userData.getUsername(), userData.getPassword()); //encodedPassword
-        if(u==null){
+        Utente u = us.login(req.getUsername(), req.getPassword()); //encodedPassword
+        if (u == null) {
             System.out.println("login non riuscito");
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        else{
-            System.out.println("login riuscito per "+ u.getNome());
+        } else {
+            System.out.println("login riuscito per " + u.getNome());
             return new ResponseEntity<>(u, HttpStatus.OK);
         }
     }
 
     @PostMapping(value = "/signin")
-    public ResponseEntity<Utente> registrazione(@RequestBody Utente nuovoUtente){
+    public ResponseEntity<Utente> registrazione(@Valid @RequestBody Utente nuovoUtente){
         Utente u = us.signin(nuovoUtente);
         if(u==null){  //username già utilizzato
             System.out.println("registrazione non riuscita");
