@@ -18,7 +18,6 @@ public class AuthService {
     @Autowired
     private UtenteRepository urepo;
 
-    @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtils jwtUtils;
@@ -26,10 +25,10 @@ public class AuthService {
     public String authenticate(LoginRequest req){
         System.out.println("sono nel auth service");
 
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
         Utente utente = urepo.findByUsername(req.getUsername());
-        System.out.println("principal" + authentication.getPrincipal() );
+//        System.out.println("principal" + authentication.getPrincipal() );
         return jwtUtils.generateToken(utente.getUsername());
     }
 }

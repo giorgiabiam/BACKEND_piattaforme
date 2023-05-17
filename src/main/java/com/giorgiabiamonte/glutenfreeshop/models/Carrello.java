@@ -11,10 +11,8 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor
 @Component
-@SessionScope
+@SessionScope   //TODO
 public class Carrello {
     private int nProdotti;
     private List<ProdottoAcquistato> listaProdotti; //deve essere concorrente?
-
-    //TODO
 }

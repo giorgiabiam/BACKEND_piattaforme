@@ -64,7 +64,7 @@ public class UtenteController {
 //        }
     }
 
-    @PostMapping(value = "/signin")
+    @PostMapping(value = "/auth/register")
     public ResponseEntity<Utente> registrazione(@Valid @RequestBody Utente nuovoUtente){
         Utente u = us.signin(nuovoUtente);
         if(u==null){  //username già utilizzato

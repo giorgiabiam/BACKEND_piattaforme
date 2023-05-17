@@ -14,8 +14,9 @@ public class JwtUtils {
 
     @Value("7200000")  //TODO durata token in millisecondi
     private int jwtExpiration;
+    @Value("SecretKey")
+    private String secret;
 
-    private Algorithm algorithm;
 
     public String generateToken(String username){
         System.out.println("sono in jwt utils");
@@ -24,6 +25,6 @@ public class JwtUtils {
                 .withIssuedAt(new Date())
                 .withExpiresAt(Date.from(Instant.now().plus(jwtExpiration, ChronoUnit.MILLIS)))
                 .withClaim("username", username)
-                .sign(algorithm);
+                .sign(Algorithm.HMAC256(secret));
     }
 }
