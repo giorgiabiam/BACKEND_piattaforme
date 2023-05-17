@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/carrello")
+@CrossOrigin(origins="*")
 public class CarrelloController {
     @Autowired
     Carrello carrello;

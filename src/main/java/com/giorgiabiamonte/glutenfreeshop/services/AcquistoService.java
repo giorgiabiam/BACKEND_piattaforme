@@ -8,7 +8,7 @@ import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.giorgiabiamonte.glutenfreeshop.exception.QuantitaNonDisponibile;
+import com.giorgiabiamonte.glutenfreeshop.utils.exception.QuantitaNonDisponibile;
 
 
 import jakarta.persistence.EntityManager;

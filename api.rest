@@ -37,11 +37,9 @@ POST https://localhost:8443/applicationscoped/post
 angelo
 
 ###
-POST https://localhost:8443/acquisti/new
+POST https://localhost:8443/utenti/auth/login
 
-###
-POST https://localhost:8443/utenti/1
-
+giobiam, 12345
 
 
 
