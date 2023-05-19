@@ -6,6 +6,7 @@ import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,11 +23,12 @@ public class InitDB implements CommandLineRunner {
     }
 
     private void initUtenti() {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Utente u=new Utente();
         u.setNome("giorgia");
         u.setCognome("biamonte");
         u.setConvenzionato(true);
-        u.setPassword("12345");
+        u.setPassword(passwordEncoder.encode("12345"));
         u.setUsername("giobiam");
         u.setIndirizzo("via aldo moro");
         u.setSaldo(90);

@@ -22,6 +22,7 @@ public class AcquistoController {
 
     @PostMapping("/{idAcquirente}")
     public ResponseEntity<Acquisto> newAcquisto(@PathVariable("idAcquirente") int IDutente, @RequestBody Carrello carrello){
+        System.out.println("CARRELLO" + carrello);
         try{
             Acquisto nuovoAcquisto = as.newAcquisto(carrello, IDutente);
             return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);

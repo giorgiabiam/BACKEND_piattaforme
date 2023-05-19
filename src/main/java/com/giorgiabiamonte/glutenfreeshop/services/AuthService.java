@@ -7,28 +7,29 @@ import com.giorgiabiamonte.glutenfreeshop.utils.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+
+@RequiredArgsConstructor
 @Service
+@Transactional
 public class AuthService {
 
     @Autowired
     private UtenteRepository urepo;
-
-    private AuthenticationManager authenticationManager;
+    @Autowired
+    private final AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtils jwtUtils;
 
     public String authenticate(LoginRequest req){
-        System.out.println("sono nel auth service");
-
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-        Utente utente = urepo.findByUsername(req.getUsername());
-//        System.out.println("principal" + authentication.getPrincipal() );
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        Utente utente = (Utente) authentication.getPrincipal();
         return jwtUtils.generateToken(utente.getUsername());
     }
 }

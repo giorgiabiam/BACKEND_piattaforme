@@ -20,4 +20,15 @@ public class ProdottoService {
         return pr.findAll();
     }
 
+    @Transactional
+    public ProdottoInMagazzino get(Integer codice) {
+        if(!pr.existsByCodice(codice)){
+            System.out.println("il prodotto con codice "+codice+"non esiste");
+            return null;
+        }
+        else{
+            return pr.findByCodice(codice);
+        }
+    }
+
 }

@@ -48,8 +48,8 @@ public class UtenteService {
     public Utente signin(Utente nuovoUtente){
         if( !ur.existsByUsername(nuovoUtente.getUsername()) ){
             Utente u = Utente.builder().username(nuovoUtente.getUsername()).password(nuovoUtente.getPassword())
-                        .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo())
-                        .convenzionato(nuovoUtente.isConvenzionato()).build();
+                    .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo())
+                    .convenzionato(nuovoUtente.isConvenzionato()).build();
 
             if(u.isConvenzionato()){
                 u.setSaldo(90);
