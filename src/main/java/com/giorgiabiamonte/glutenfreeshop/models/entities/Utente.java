@@ -20,8 +20,7 @@ import java.util.*;
 @Getter
 @Table(name="Utente")
 public class Utente implements UserDetails, Serializable {
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    List<Role> roles;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID", nullable=false)
@@ -68,7 +67,7 @@ public class Utente implements UserDetails, Serializable {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        this.roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
+        authorities.add(new SimpleGrantedAuthority("USER"));
         return authorities;
     }
 
