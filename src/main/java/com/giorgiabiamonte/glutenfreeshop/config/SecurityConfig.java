@@ -28,12 +28,12 @@ public class SecurityConfig {
 //                .sessionManagement(httpSecuritySessionManagementConfigurer ->
 //                        httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeRequests(authorize -> authorize
+                        .requestMatchers("/images/**").permitAll()
                         .requestMatchers("/utenti/auth/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .build();
 
     }
