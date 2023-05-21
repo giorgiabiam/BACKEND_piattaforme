@@ -19,15 +19,13 @@ public class CarrelloController {
     @Autowired
     ProdottoRepository prepo;
 
-    @GetMapping("")
+    @GetMapping
     public Carrello get(){
-        System.out.println("get carrello");
         return carrello;
     }
 
-    @PostMapping("")
+    @PostMapping
     public Carrello add(@RequestBody CarrelloRequest req){
-        System.out.println("carrello request" + req);
         if( !prepo.existsByCodice(req.getCodice_prodotto()) ){
             System.out.println("il prodotto non esiste");
             return null;
@@ -38,13 +36,14 @@ public class CarrelloController {
             p.setProdottoReale(pReale);
             p.setQtaAcquistata(req.getQta());
             //salverò il prodotto acquistato nel DB solo quando l'utente farà l'acquisto
-            carrello.getListaProdotti().add(p);
-            System.out.println("aggiunto al carrello il prodotto "+req.getCodice_prodotto());
+            carrello.getListaProdottiReal().add(pReale);
+            carrello.incrementa();
+            System.out.println("carrello dopo aggiunta---" +carrello.toString());
             return carrello;
         }
     }
 
-    @DeleteMapping("")
+    @DeleteMapping
     public Carrello clear(){
         carrello.getListaProdotti().clear();
         carrello.setNProdotti(0);

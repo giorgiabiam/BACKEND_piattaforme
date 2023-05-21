@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.*;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @Table(name="Prodotto_acquistato")
 @Entity
 public class ProdottoAcquistato {

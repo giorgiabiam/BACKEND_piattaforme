@@ -42,4 +42,11 @@ public class JwtUtils {
         }
         return false;
     }
+
+    public String extractUsernameFromToken(String tokenReq) {
+        //TODO
+        return "";
+//        DecodedJWT decodedJWT = verifier.verify(token);
+//        return decodedJWT.getClaim("userId").asString();
+    }
 }

@@ -24,7 +24,7 @@ public class UtenteController {
     private UtenteService us;
     private final AuthService authService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<Utente>> getAll(){
         List<Utente> utenti= us.getAll();
         return new ResponseEntity<>(utenti, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class UtenteController {
         System.out.println("sono nel controller login");
         String jwt = authService.authenticate(req);
         Utente utente = us.findByUsername(req.getUsername());
-        JwtResponse res = new JwtResponse(jwt, utente);
+        JwtResponse res = new JwtResponse(jwt, utente.getID());
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 

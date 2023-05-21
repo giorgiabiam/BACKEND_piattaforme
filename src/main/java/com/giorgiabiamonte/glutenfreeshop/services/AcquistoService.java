@@ -51,6 +51,7 @@ public class AcquistoService {
             int nuovaQta = p.getProdottoReale().getQta() - p.getQtaAcquistata();
             p.getProdottoReale().setQta(nuovaQta); //ATTENZIONE NON SO SE FUNZIONA FACENDO COSI'
         }
+        //TODO scalare il totale dal saldo
 
         Acquisto nuovoAcquisto = new Acquisto();
         nuovoAcquisto.setAcquirente(ur.findByID(IDutente));

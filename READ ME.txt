@@ -12,7 +12,10 @@ Abilitare HTTPS in un progetto Spring
     2 - studiare: autenticazione session based oppure token based + link angelo whatsapp
     3 - creare modelli richiesta/risposta  ??
     4 - get carrello riceve id prodotto e quantità
-    5 - immagini, non posso lasciare l'url del sito da cui le ho prese
+    5 - GENERARE UN ALTRO CERTIFICATO (perchè quello che ho ora ha password e id =paola)
+    6 - scalare il saldo se l'utente che acquista è convenzionato
+    7 - aggiustare acquisto con carrello per come l'ho fatto ora
+
 
 //    repo flesca con autenticazione
 //    https://github.com/sflesca/psw2023

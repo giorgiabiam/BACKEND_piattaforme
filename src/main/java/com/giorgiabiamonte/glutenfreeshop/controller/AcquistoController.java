@@ -2,6 +2,7 @@ package com.giorgiabiamonte.glutenfreeshop.controller;
 
 import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
+import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.utils.exception.QuantitaNonDisponibile;
 import com.giorgiabiamonte.glutenfreeshop.services.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class AcquistoController {
     private AcquistoService as;
 
     @PostMapping("/{idAcquirente}")
-    public ResponseEntity<Acquisto> newAcquisto(@PathVariable("idAcquirente") int IDutente, @RequestBody Carrello carrello){
-        System.out.println("CARRELLO" + carrello);
+    public ResponseEntity<Acquisto> newAcquisto(@PathVariable("idAcquirente") int idAcquirente, @RequestBody Carrello carrello){
+        System.out.println("CARRELLO in acquisto controller" + carrello);
         try{
-            Acquisto nuovoAcquisto = as.newAcquisto(carrello, IDutente);
+            Acquisto nuovoAcquisto = as.newAcquisto(carrello, idAcquirente);
             return new ResponseEntity<>(nuovoAcquisto, HttpStatus.CREATED);
         } catch (QuantitaNonDisponibile e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Acquisto non andato a buon fine", e);
@@ -32,8 +33,8 @@ public class AcquistoController {
     }
 
     @GetMapping("/{idAcquirente}")
-    public ResponseEntity<List<Acquisto>> getAcquistiUtente(@PathVariable("idAcquirente") int id){
-        List<Acquisto> listaAcquisti= as.getAcquistiUtente(id);
+    public ResponseEntity<List<Acquisto>> getAcquistiUtente(@PathVariable("idAcquirente") int idAcquirente){
+        List<Acquisto> listaAcquisti= as.getAcquistiUtente(idAcquirente);
         return new ResponseEntity<>(listaAcquisti, HttpStatus.OK);
     }
 }
