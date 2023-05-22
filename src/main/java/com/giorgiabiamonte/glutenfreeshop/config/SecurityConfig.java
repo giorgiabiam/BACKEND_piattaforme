@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/utenti/auth/**").permitAll()
                         .requestMatchers("/utenti/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
-                        .requestMatchers("/carrello").permitAll()
+                        .requestMatchers("/carrello/**").permitAll()
                         .requestMatchers("/acquisti/**").authenticated()
 //                        .anyRequest().authenticated()
                 )

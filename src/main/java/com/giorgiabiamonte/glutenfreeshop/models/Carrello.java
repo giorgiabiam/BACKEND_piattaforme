@@ -33,6 +33,9 @@ public class Carrello {
     public void incrementa(){
         nProdotti++;
     }
+    public void decrementa(){
+        nProdotti--;
+    }
 
     public List<ProdottoAcquistato> getListaProdotti() {
         return listaProdotti;

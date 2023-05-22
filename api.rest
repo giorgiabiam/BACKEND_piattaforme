@@ -42,8 +42,9 @@ POST https://localhost:8443/utenti/auth/login
 giobiam, 12345
 
 ###
-GET https://localhost:8443/acquisti/1
-
+GET https://localhost:8443/utenti/1
+###
+GET https://localhost:8443/prodotti
 
 
 

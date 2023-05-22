@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RestController
 @RequestMapping(value = "/carrello")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="*")  //TODO
 public class CarrelloController {
     @Autowired
     Carrello carrello;
@@ -49,7 +49,22 @@ public class CarrelloController {
         carrello.getListaProdottiReal().clear();
         carrello.setTotale(0);
         carrello.setNProdotti(0);
-        System.out.println("svuoto carrello");
+        System.out.println("svuotato carrello");
         return carrello;
+    }
+
+    @DeleteMapping("/{codice_prodotto}")
+    public Carrello rimuovi_dal_carrello(@PathVariable("codice_prodotto")Integer codice_prodotto){
+        if(prepo.existsByCodice(codice_prodotto)){
+            ProdottoInMagazzino p = prepo.findByCodice(codice_prodotto);
+            for(int i=0; i<carrello.getListaProdottiReal().size(); i++){
+                if(carrello.getListaProdottiReal().get(i).getCodice() == codice_prodotto){
+                    carrello.getListaProdottiReal().remove(i);
+                    carrello.decrementa();
+                }
+            }
+            return carrello;
+        }
+        return null;
     }
 }
