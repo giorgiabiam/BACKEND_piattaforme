@@ -60,17 +60,17 @@ public class UtenteController {
     }
 
 
-    //TODO
-    //mi serve per gestire aggiuni/rimuovi preferiti quindi dovrebbe essere PUT
-    @PostMapping(value = "/{id}")
-    public ResponseEntity<Utente> updatePreferiti(@PathVariable("id") String id, @RequestBody ProdottoInMagazzino p){
-        System.out.println("utente " + id + " ha aggiunto il prodotto: " + p.getNome());
-        Utente u = us.update(id, p);
-        if(u==null){
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-        }
-        System.out.println("PUT--->" + u);
-        return new ResponseEntity<>(u, HttpStatus.OK);
-    }
+//    //TODO
+//    //mi serve per gestire aggiuni/rimuovi preferiti quindi dovrebbe essere PUT
+//    @PostMapping(value = "/{id}")
+//    public ResponseEntity<Utente> updatePreferiti(@PathVariable("id") String id, @RequestBody ProdottoInMagazzino p){
+//        System.out.println("utente " + id + " ha aggiunto il prodotto: " + p.getNome());
+//        Utente u = us.update(id, p);
+//        if(u==null){
+//            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+//        }
+//        System.out.println("PUT--->" + u);
+//        return new ResponseEntity<>(u, HttpStatus.OK);
+//    }
 
 }

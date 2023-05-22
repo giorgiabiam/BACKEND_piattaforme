@@ -63,18 +63,18 @@ public class UtenteService {
     }
 
 
-    @Transactional
-    public Utente update(String id, ProdottoInMagazzino p) {
-        if( !ur.existsById(Integer.parseInt(id)) || !prepo.existsById(p.getCodice()) ){
-            System.out.println("errore update");
-            return null;
-        }
-        else{
-            Utente u = ur.findByID(Integer.parseInt(id));
-            u.getPreferiti().add(p);
-            System.out.println("UPDATE" + u);
-            return ur.save(u);
-        }
-    }
+//    @Transactional
+//    public Utente update(String id, ProdottoInMagazzino p) {
+//        if( !ur.existsById(Integer.parseInt(id)) || !prepo.existsById(p.getCodice()) ){
+//            System.out.println("errore update");
+//            return null;
+//        }
+//        else{
+//            Utente u = ur.findByID(Integer.parseInt(id));
+//            u.getPreferiti().add(p);
+//            System.out.println("UPDATE" + u);
+//            return ur.save(u);
+//        }
+//    }
 
 }

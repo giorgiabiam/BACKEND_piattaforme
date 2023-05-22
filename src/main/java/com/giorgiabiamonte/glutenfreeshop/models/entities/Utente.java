@@ -61,8 +61,8 @@ public class Utente implements UserDetails, Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<ProdottoInMagazzino> preferiti = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<ProdottoInMagazzino> preferiti = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
