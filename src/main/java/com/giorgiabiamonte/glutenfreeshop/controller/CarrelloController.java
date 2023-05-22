@@ -46,6 +46,8 @@ public class CarrelloController {
     @DeleteMapping
     public Carrello clear(){
         carrello.getListaProdotti().clear();
+        carrello.getListaProdottiReal().clear();
+        carrello.setTotale(0);
         carrello.setNProdotti(0);
         System.out.println("svuoto carrello");
         return carrello;

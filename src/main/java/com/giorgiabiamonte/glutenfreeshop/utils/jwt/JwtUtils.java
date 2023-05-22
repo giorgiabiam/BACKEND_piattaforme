@@ -5,6 +5,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.time.Instant;
@@ -19,7 +21,16 @@ public class JwtUtils {
     @Value("SecretKey")
     private String secret;
 
+    private Algorithm algorithm;
     private JWTVerifier verifier;
+
+    //da repo github Flesca
+    //https://github.com/sflesca/psw2023/blob/master/src/main/java/com/securityexample/demosecurityjwtjpa/security/jwt/JwtUtils.java#L8
+    @PostConstruct
+    public void init(){
+        this.algorithm =  Algorithm.HMAC256(secret);
+        this.verifier = JWT.require(algorithm).build();
+    }
 
     public String generateToken(String username){
         System.out.println("sono in jwt utils");
@@ -34,8 +45,11 @@ public class JwtUtils {
     public boolean validateToken(String token){
         try {
             DecodedJWT decodedJWT = verifier.verify(token);
-            if (!(decodedJWT.getExpiresAt().after(new Date())))
+            if (!(decodedJWT.getExpiresAt().after(new Date()))){
+                System.out.println("token non valido");
                 return false;
+            }
+            System.out.println("token valido");
             return true;
         } catch (JWTVerificationException e) {
             System.out.println("Invalid JWT signature: " + e.getMessage());
@@ -43,10 +57,9 @@ public class JwtUtils {
         return false;
     }
 
-    public String extractUsernameFromToken(String tokenReq) {
-        //TODO
-        return "";
-//        DecodedJWT decodedJWT = verifier.verify(token);
-//        return decodedJWT.getClaim("userId").asString();
+    public String extractUsernameFromToken(String token) {
+        //da repo github Flesca
+        DecodedJWT decodedJWT = verifier.verify(token);
+        return decodedJWT.getClaim("username").asString();
     }
 }
