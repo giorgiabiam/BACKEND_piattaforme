@@ -9,14 +9,12 @@ import com.giorgiabiamonte.glutenfreeshop.repositories.AcquistoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoAcquistatoRepo;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
+import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.giorgiabiamonte.glutenfreeshop.utils.exception.QuantitaNonDisponibile;
-
-
-import jakarta.persistence.EntityManager;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -26,8 +24,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AcquistoService {
 
-    @Autowired
-    private EntityManager entityManager;
+//    @Autowired
+//    private EntityManager entityManager;
 
     private final AcquistoRepository acquisto_repo;
     private final UtenteRepository utente_repo;
@@ -46,10 +44,16 @@ public class AcquistoService {
             //TODO controllo quantità
             ProdottoInMagazzino preal = prodottoRepo.findByCodice(i);
             int qta_acquistata = carrello.getMap().get(i);
-            if (  (preal.getQta()-qta_acquistata) < 0 ){
+            if (  (preal.getQta() - qta_acquistata) < 0 ){
                 throw new QuantitaNonDisponibile();
             }
+
             else{
+                int nuovaQta = preal.getQta() - carrello.getMap().get(i);
+                preal.setQta(nuovaQta);
+                //TODO aggiornare l'entità prodotto visto che ho modificato la quantità
+//                prodottoRepo.save(preal); // check
+
                 ProdottoAcquistato pa = new ProdottoAcquistato();
                 pa.setProdottoReale(preal);
                 pa.setQtaAcquistata(qta_acquistata);
@@ -65,7 +69,7 @@ public class AcquistoService {
         acquisto.setAcquirente(u);
         acquisto.setTot(carrello.getTotale());
         acquisto.setListaProdotti(listaProd);
-//        entityManager.refresh(acquisto);
+//        entityManager.refresh(acquisto); // TODO serve ?
         acquisto_repo.save(acquisto);
         return  acquisto;
     }
