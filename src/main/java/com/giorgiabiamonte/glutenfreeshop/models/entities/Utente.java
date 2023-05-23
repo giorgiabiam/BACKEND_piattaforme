@@ -21,6 +21,9 @@ import java.util.*;
 @Table(name="Utente")
 public class Utente implements UserDetails, Serializable {
 
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+//    List<Role> roles;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID", nullable=false)
@@ -68,6 +71,7 @@ public class Utente implements UserDetails, Serializable {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("USER"));
+//        this.roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
         return authorities;
     }
 

@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping(value = "/carrello")
@@ -32,23 +34,23 @@ public class CarrelloController {
         }
         else{
             ProdottoInMagazzino pReale = prepo.findByCodice(req.getCodice_prodotto());
-            ProdottoAcquistato p = new ProdottoAcquistato();
-            p.setProdottoReale(pReale);
-            p.setQtaAcquistata(req.getQta());
-            //salverò il prodotto acquistato nel DB solo quando l'utente farà l'acquisto
+
             carrello.getListaProdottiReal().add(pReale);
-            carrello.incrementa();
+//            carrello.getMap().put(req.getCodice_prodotto(), req.getQta());
+            carrello.incrementa(pReale.getCodice(), req.getQta());
             System.out.println("carrello dopo aggiunta---" +carrello.toString());
+            System.out.println("map dopo aggiunta---" +carrello.getMap().toString());
+            carrello.setTotale(calcolaTot(carrello.getMap()));
+
             return carrello;
         }
     }
 
     @DeleteMapping
     public Carrello clear(){
-        carrello.getListaProdotti().clear();
+        carrello.getMap().clear();
         carrello.getListaProdottiReal().clear();
         carrello.setTotale(0);
-        carrello.setNProdotti(0);
         System.out.println("svuotato carrello");
         return carrello;
     }
@@ -57,14 +59,25 @@ public class CarrelloController {
     public Carrello rimuovi_dal_carrello(@PathVariable("codice_prodotto")Integer codice_prodotto){
         if(prepo.existsByCodice(codice_prodotto)){
             ProdottoInMagazzino p = prepo.findByCodice(codice_prodotto);
-            for(int i=0; i<carrello.getListaProdottiReal().size(); i++){
-                if(carrello.getListaProdottiReal().get(i).getCodice() == codice_prodotto){
-                    carrello.getListaProdottiReal().remove(i);
-                    carrello.decrementa();
+            for(int i : carrello.getMap().keySet()){
+                if( i == codice_prodotto ){
+                    carrello.getMap().remove(i);
+                    carrello.getListaProdottiReal().remove(p);
+                    carrello.decrementa(codice_prodotto); //TODO gestire quantità da rimuovere o rimuovi tutti?
+                    return carrello;
                 }
             }
-            return carrello;
         }
         return null;
     }
+
+    public double calcolaTot(Map<Integer, Integer> map) {
+        double res =0d;
+        for(int i : map.keySet()){
+            ProdottoInMagazzino p = prepo.findByCodice(i);
+            res+= p.getPrezzo()*map.get(i);
+        }
+        return res;
+    }
+
 }

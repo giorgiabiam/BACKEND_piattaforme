@@ -1,51 +1,45 @@
 package com.giorgiabiamonte.glutenfreeshop.models;
 
-import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Getter @Setter @ToString
 @Component
-//@SessionScope   //TODO
+//@SessionScope   //TODO ?
 public class Carrello {
-    private int nProdotti;
-    private List<ProdottoAcquistato> listaProdotti;
     private double totale;
-
-    //provo con prodotto reale
+    private Map<Integer, Integer> map; // <codice prodotto, quantità>
     private List<ProdottoInMagazzino> listaProdottiReal;
 
-
     public Carrello(){
-        listaProdotti = new LinkedList<>();
-        nProdotti = 0;
-
+        totale = 0d;
+        map = new HashMap<>();
         listaProdottiReal = new LinkedList<>();
     }
 
-    public void incrementa(){
-        nProdotti++;
-    }
-    public void decrementa(){
-        nProdotti--;
-    }
+    public void incrementa(int codice_prodotto, int qta) {
+        //TODO prezzo totale
 
-    public List<ProdottoAcquistato> getListaProdotti() {
-        return listaProdotti;
-    }
-
-    public double getTotale() {
-        double res =0;
-        for(int i=0; i<listaProdottiReal.size(); i++){
-            res+= listaProdottiReal.get(i).getPrezzo();
+        if(map.containsKey(codice_prodotto)){
+            int nuovaQta = qta + map.get(codice_prodotto);
+            map.replace(codice_prodotto, nuovaQta);
         }
-        totale = res;
-        return totale;
+        else{
+            map.put(codice_prodotto, qta);
+        }
     }
+
+    public void decrementa(int codice_prodotto){
+        map.remove(codice_prodotto);
+        //TODO prezzo totale
+    }
+
 }

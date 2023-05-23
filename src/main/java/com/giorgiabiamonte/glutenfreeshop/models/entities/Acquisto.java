@@ -12,19 +12,6 @@ import java.util.Objects;
 @Entity
 public class Acquisto {
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Acquisto acquisto = (Acquisto) o;
-        return ID == acquisto.ID;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID);
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID", nullable=false)
@@ -33,17 +20,18 @@ public class Acquisto {
     @Column(name="data_acquisto", nullable = false)
     private String dataAcquisto;
 
-    @Transient
+    // @Transient
+    @Column(name="tot", nullable = false)
     private double tot;
 
-    public double getTot(){
+    public double calcolaTot() { //getTot()
         double tot=0d;
         List<ProdottoAcquistato> prodotti=getListaProdotti();
         for(ProdottoAcquistato p : prodotti){
             tot += p.getQtaAcquistata() * p.getProdottoReale().getPrezzo();
         }
         return tot;
-    }
+     }
 
     //più acquisti per lo stesso acquirente
     @ManyToOne
@@ -57,6 +45,19 @@ public class Acquisto {
         this.acquirente=acquirente;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<ProdottoAcquistato> listaProdotti;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Acquisto acquisto = (Acquisto) o;
+        return ID == acquisto.ID;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ID);
+    }
 }
