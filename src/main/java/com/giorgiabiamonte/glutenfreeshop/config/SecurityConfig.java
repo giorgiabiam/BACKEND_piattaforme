@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers("/images/**").permitAll()
-                        .requestMatchers("/utenti/auth/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/utenti/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
                         .requestMatchers("/carrello/**").permitAll()

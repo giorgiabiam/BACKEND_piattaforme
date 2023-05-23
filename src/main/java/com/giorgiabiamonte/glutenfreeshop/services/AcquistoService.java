@@ -9,9 +9,7 @@ import com.giorgiabiamonte.glutenfreeshop.repositories.AcquistoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoAcquistatoRepo;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.giorgiabiamonte.glutenfreeshop.utils.exception.QuantitaNonDisponibile;
@@ -72,5 +70,9 @@ public class AcquistoService {
 //        entityManager.refresh(acquisto); // TODO serve ?
         acquisto_repo.save(acquisto);
         return  acquisto;
+    }
+
+    public Acquisto getAcquisto(int idAcq) {
+        return acquisto_repo.findAcquistoByID(idAcq);
     }
 }

@@ -3,7 +3,6 @@ package com.giorgiabiamonte.glutenfreeshop.controller;
 import com.giorgiabiamonte.glutenfreeshop.utils.jwt.JwtResponse;
 import com.giorgiabiamonte.glutenfreeshop.services.AuthService;
 import com.giorgiabiamonte.glutenfreeshop.models.LoginRequest;
-import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 
 import com.giorgiabiamonte.glutenfreeshop.services.UtenteService;
@@ -25,7 +24,7 @@ public class UtenteController {
     private final AuthService authService;
 
     @GetMapping
-    public ResponseEntity<List<Utente>> getAll(){
+    public ResponseEntity<List<Utente>> getAll(){  //non lo chiamo mai
         List<Utente> utenti= us.getAll();
         return new ResponseEntity<>(utenti, HttpStatus.OK);
     }
@@ -35,7 +34,6 @@ public class UtenteController {
         Utente utente = us.findByID(id);
         return new ResponseEntity<>(utente, HttpStatus.OK);
     }
-
 
     @PostMapping(value = "/auth/login", consumes = "application/json;charset=UTF-8")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest req) {
@@ -60,7 +58,6 @@ public class UtenteController {
     }
 
 
-//    //TODO
 //    //mi serve per gestire aggiuni/rimuovi preferiti quindi dovrebbe essere PUT
 //    @PostMapping(value = "/{id}")
 //    public ResponseEntity<Utente> updatePreferiti(@PathVariable("id") String id, @RequestBody ProdottoInMagazzino p){

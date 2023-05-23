@@ -1,8 +1,6 @@
 package com.giorgiabiamonte.glutenfreeshop.services;
 
-import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
-import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +13,6 @@ public class UtenteService {
 
     @Autowired
     private UtenteRepository ur;
-    @Autowired
-    private ProdottoRepository prepo;
 
     @Transactional
     public List<Utente> getAll() {
@@ -49,11 +45,12 @@ public class UtenteService {
         if( !ur.existsByUsername(nuovoUtente.getUsername()) ){
             Utente u = Utente.builder().username(nuovoUtente.getUsername()).password(nuovoUtente.getPassword())
                     .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo())
-                    .convenzionato(nuovoUtente.isConvenzionato()).build();
+//                    .convenzionato(nuovoUtente.isConvenzionato())
+                    .build();
 
-            if(u.isConvenzionato()){
-                u.setSaldo(90);
-            }
+//            if(u.isConvenzionato()){
+//                u.setSaldo(90);
+//            }
             ur.save(u);
             return u;
         }

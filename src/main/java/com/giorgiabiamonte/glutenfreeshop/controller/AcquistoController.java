@@ -31,9 +31,15 @@ public class AcquistoController {
         }
     }
 
-    @GetMapping("/{idAcquirente}")
+    @GetMapping("/utente/{idAcquirente}")
     public ResponseEntity<List<Acquisto>> getAcquistiUtente(@PathVariable("idAcquirente") int idAcquirente){
         List<Acquisto> listaAcquisti= as.getAcquistiUtente(idAcquirente);
         return new ResponseEntity<>(listaAcquisti, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Acquisto> getAcquisto(@PathVariable("id") int idAcq){
+        Acquisto a = as.getAcquisto(idAcq);
+        return new ResponseEntity<>(a, HttpStatus.OK);
     }
 }

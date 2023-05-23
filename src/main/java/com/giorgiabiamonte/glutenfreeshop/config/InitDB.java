@@ -27,11 +27,11 @@ public class InitDB implements CommandLineRunner {
         Utente u=new Utente();
         u.setNome("giorgia");
         u.setCognome("biamonte");
-        u.setConvenzionato(true);
+//        u.setConvenzionato(true);
         u.setPassword(passwordEncoder.encode("12345"));
         u.setUsername("giobiam");
         u.setIndirizzo("via aldo moro");
-        u.setSaldo(90);
+//        u.setSaldo(90);
 
         ur.save(u);
     }

@@ -41,11 +41,11 @@ public class Utente implements UserDetails, Serializable {
     //@Pattern(regexp = "") //TODO non si accettano spazi bianchi
     private String password;
 
-    @Column(name="convenzionato", nullable=false)
-    private boolean convenzionato;
+//    @Column(name="convenzionato", nullable=false)
+//    private boolean convenzionato;
 
-    @Column(name="saldo")
-    private double saldo;
+//    @Column(name="saldo")
+//    private double saldo;
 
     @Column(name="indirizzo", nullable = false)
     //@NotBlank
