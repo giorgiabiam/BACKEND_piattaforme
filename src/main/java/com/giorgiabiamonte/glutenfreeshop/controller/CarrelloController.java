@@ -2,7 +2,6 @@ package com.giorgiabiamonte.glutenfreeshop.controller;
 
 import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
 import com.giorgiabiamonte.glutenfreeshop.models.CarrelloRequest;
-import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import lombok.AllArgsConstructor;
@@ -35,8 +34,13 @@ public class CarrelloController {
         else{
             ProdottoInMagazzino pReale = prepo.findByCodice(req.getCodice_prodotto());
 
-            carrello.getListaProdottiReal().add(pReale);
-//            carrello.getMap().put(req.getCodice_prodotto(), req.getQta());
+            if( !carrello.getMap().containsKey(req.getCodice_prodotto()) ){
+                carrello.getListaProdottiReal().add(pReale);
+                //deve contenere una sola occorrenza dello stesso prodotto
+            }
+
+
+            System.out.println("------" + carrello.getListaProdottiReal());
             carrello.incrementa(pReale.getCodice(), req.getQta());
             System.out.println("carrello dopo aggiunta---" +carrello.toString());
             System.out.println("map dopo aggiunta---" +carrello.getMap().toString());
@@ -64,6 +68,7 @@ public class CarrelloController {
                     carrello.getMap().remove(i);
                     carrello.getListaProdottiReal().remove(p);
                     carrello.decrementa(codice_prodotto); //TODO gestire quantità da rimuovere o rimuovi tutti?
+                    calcolaTot(carrello.getMap());
                     return carrello;
                 }
             }

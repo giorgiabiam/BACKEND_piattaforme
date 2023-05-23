@@ -66,6 +66,7 @@ public class AcquistoService {
         acquisto.setTot(carrello.getTotale());
         acquisto.setListaProdotti(listaProd);
 //        entityManager.refresh(acquisto);
+        acquisto_repo.save(acquisto);
         return  acquisto;
     }
 }

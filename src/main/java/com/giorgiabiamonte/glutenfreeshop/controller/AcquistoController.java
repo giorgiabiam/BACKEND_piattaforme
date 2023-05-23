@@ -2,7 +2,6 @@ package com.giorgiabiamonte.glutenfreeshop.controller;
 
 import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
-import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.utils.exception.QuantitaNonDisponibile;
 import com.giorgiabiamonte.glutenfreeshop.services.AcquistoService;
 import org.springframework.beans.factory.annotation.Autowired;
