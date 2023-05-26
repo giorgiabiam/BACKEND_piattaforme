@@ -8,13 +8,7 @@ Abilitare HTTPS in un progetto Spring
 ---il certificato si genera tramite comando di powershell (vedi Baeldung)----
 
  TODO
-    1 -(per il login) disabilita i cors e i crsf token (nel bean di configurazione spring security)
-    2 - studiare: autenticazione session based oppure token based + link angelo whatsapp
-    3 - creare modelli richiesta/risposta  ??
-    4 - get carrello riceve id prodotto e quantità
-    5 - GENERARE UN ALTRO CERTIFICATO (perchè quello che ho ora ha password e id =paola)
-    6 - scalare il saldo se l'utente che acquista è convenzionato
-    7 - aggiustare l'acquisto con carrello per come l'ho fatto ora
+    GENERARE UN ALTRO CERTIFICATO (perchè quello che ho ora ha password e id =paola)
 
 
 //    repo flesca con autenticazione

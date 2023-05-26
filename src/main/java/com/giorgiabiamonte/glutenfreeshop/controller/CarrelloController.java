@@ -36,11 +36,9 @@ public class CarrelloController {
 
             if( !carrello.getMap().containsKey(req.getCodice_prodotto()) ){
                 carrello.getListaProdottiReal().add(pReale);
-                //deve contenere una sola occorrenza dello stesso prodotto
+                //questa lista deve contenere una sola occorrenza dello stesso prodotto
             }
 
-
-            System.out.println("------" + carrello.getListaProdottiReal());
             carrello.incrementa(pReale.getCodice(), req.getQta());
             System.out.println("carrello dopo aggiunta---" +carrello.toString());
             System.out.println("map dopo aggiunta---" +carrello.getMap().toString());
@@ -52,6 +50,7 @@ public class CarrelloController {
 
     @DeleteMapping
     public Carrello clear(){
+        System.out.println("DELETE");
         carrello.getMap().clear();
         carrello.getListaProdottiReal().clear();
         carrello.setTotale(0);
@@ -62,16 +61,19 @@ public class CarrelloController {
     @DeleteMapping("/{codice_prodotto}")
     public Carrello rimuovi_dal_carrello(@PathVariable("codice_prodotto")Integer codice_prodotto){
         if(prepo.existsByCodice(codice_prodotto)){
-            ProdottoInMagazzino p = prepo.findByCodice(codice_prodotto);
-            for(int i : carrello.getMap().keySet()){
-                if( i == codice_prodotto ){
-                    carrello.getMap().remove(i);
-                    carrello.getListaProdottiReal().remove(p);
-                    carrello.decrementa(codice_prodotto); //TODO gestire quantità da rimuovere o rimuovi tutti?
-                    calcolaTot(carrello.getMap());
-                    return carrello;
-                }
+            carrello.getMap().remove(codice_prodotto);
+
+            for(int i =0; i<carrello.getListaProdottiReal().size(); i++){
+                if(carrello.getListaProdottiReal().get(i).getCodice() == codice_prodotto)
+                    carrello.getListaProdottiReal().remove(i);
             }
+
+            carrello.decrementa(codice_prodotto); //TODO gestire quantità da rimuovere o rimuovere tutti?
+            carrello.setTotale( calcolaTot(carrello.getMap()) );
+
+            System.out.println("cart dopo rimozione---" + carrello);
+
+            return carrello;
         }
         return null;
     }

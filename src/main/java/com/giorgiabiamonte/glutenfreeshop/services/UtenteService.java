@@ -3,6 +3,7 @@ package com.giorgiabiamonte.glutenfreeshop.services;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,15 +43,11 @@ public class UtenteService {
 
     @Transactional
     public Utente signin(Utente nuovoUtente){
+        //TODO usare BCrypt per la password
         if( !ur.existsByUsername(nuovoUtente.getUsername()) ){
-            Utente u = Utente.builder().username(nuovoUtente.getUsername()).password(nuovoUtente.getPassword())
-                    .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo())
-//                    .convenzionato(nuovoUtente.isConvenzionato())
-                    .build();
-
-//            if(u.isConvenzionato()){
-//                u.setSaldo(90);
-//            }
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            Utente u = Utente.builder().username(nuovoUtente.getUsername()).password(encoder.encode(nuovoUtente.getPassword()) )
+                    .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo()).build();
             ur.save(u);
             return u;
         }
@@ -58,20 +55,5 @@ public class UtenteService {
             return null;
         }
     }
-
-
-//    @Transactional
-//    public Utente update(String id, ProdottoInMagazzino p) {
-//        if( !ur.existsById(Integer.parseInt(id)) || !prepo.existsById(p.getCodice()) ){
-//            System.out.println("errore update");
-//            return null;
-//        }
-//        else{
-//            Utente u = ur.findByID(Integer.parseInt(id));
-//            u.getPreferiti().add(p);
-//            System.out.println("UPDATE" + u);
-//            return ur.save(u);
-//        }
-//    }
 
 }

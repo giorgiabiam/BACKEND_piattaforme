@@ -14,7 +14,7 @@ import java.util.*;
 public class Carrello {
     private double totale;
     private Map<Integer, Integer> map; // <codice prodotto, quantità>
-    private List<ProdottoInMagazzino> listaProdottiReal;
+    private List<ProdottoInMagazzino> listaProdottiReal;  //mi serve per la visualizzazione nel front
 
     public Carrello(){
         totale = 0d;

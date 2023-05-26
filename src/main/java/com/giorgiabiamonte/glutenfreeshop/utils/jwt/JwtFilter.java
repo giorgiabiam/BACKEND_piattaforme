@@ -37,7 +37,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
         if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
             token = header.substring(7);
-            System.out.println("token richiesta senza bearer: " + token);
         }
 
         if (token != null && jwtUtils.validateToken(token)) {
