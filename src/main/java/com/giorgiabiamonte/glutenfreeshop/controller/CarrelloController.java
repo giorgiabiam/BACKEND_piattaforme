@@ -1,6 +1,7 @@
 package com.giorgiabiamonte.glutenfreeshop.controller;
 
 import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
+import com.giorgiabiamonte.glutenfreeshop.models.CarrelloItem;
 import com.giorgiabiamonte.glutenfreeshop.models.CarrelloRequest;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -48,6 +50,51 @@ public class CarrelloController {
         }
     }
 
+    @PostMapping(value = "/aggiungicarrelloitem")
+    public Carrello add_nuova(@RequestBody CarrelloRequest req){
+        System.out.println("carrello request" + req.toString());
+        if( !prepo.existsByCodice(req.getCodice_prodotto()) ){
+            System.out.println("il prodotto non esiste");
+            return null;
+        }
+        else{
+            ProdottoInMagazzino pReale = prepo.findByCodice(req.getCodice_prodotto());
+            //int index =
+            CarrelloItem item1=carrello.getLista().stream().filter(x->{
+                boolean b = x.getProdotto().getCodice() == req.getCodice_prodotto();
+                return b;
+            } ).findFirst().orElseGet(()->{
+                CarrelloItem item = new CarrelloItem();
+                item.setProdotto(pReale);
+                item.setQta_acquist(req.getQta());
+                carrello.getLista().add(item);
+
+                return item;
+            });
+            item1.setQta_acquist(req.getQta());
+            System.out.println("ssssssssssssssssssssssssssssssssssssss"+item1);
+//            if( index != -1){
+//                CarrelloItem item = carrello.getLista().get(index);
+//                System.out.println("---" + item);
+//                item.setQta_acquist(req.getQta());
+//            }
+//            else{
+//                CarrelloItem item = new CarrelloItem();
+//                item.setProdotto(pReale);
+//                item.setQta_acquist(req.getQta());
+//                carrello.getLista().add(item);
+//            }
+            //incrementa totale
+            carrello.setTotale( calcolaTot_nuovo(carrello.getLista()) );
+
+            System.out.println("carrello dopo aggiunta nuova---" +carrello.toString());
+            carrello.setTotale(calcolaTot(carrello.getMap()));
+
+            return carrello;
+        }
+
+    }
+
     @DeleteMapping
     public Carrello clear(){
         System.out.println("DELETE");
@@ -83,6 +130,14 @@ public class CarrelloController {
         for(int i : map.keySet()){
             ProdottoInMagazzino p = prepo.findByCodice(i);
             res+= p.getPrezzo()*map.get(i);
+        }
+        return res;
+    }
+
+    public double calcolaTot_nuovo(List<CarrelloItem> lista) {
+        double res =0d;
+        for(CarrelloItem it: lista){
+            res += it.getProdotto().getPrezzo() * it.getQta_acquist();
         }
         return res;
     }

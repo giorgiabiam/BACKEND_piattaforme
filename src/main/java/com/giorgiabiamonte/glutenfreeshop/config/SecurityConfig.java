@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/utenti/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
                         .requestMatchers("/carrello/**").permitAll()
+                        .requestMatchers("/carrello/nuova").permitAll()
                         .requestMatchers("/acquisti/**").authenticated()
 //                        .anyRequest().authenticated()
                 )

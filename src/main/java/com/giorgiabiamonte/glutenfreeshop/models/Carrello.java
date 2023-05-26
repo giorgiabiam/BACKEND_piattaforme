@@ -16,15 +16,17 @@ public class Carrello {
     private Map<Integer, Integer> map; // <codice prodotto, quantità>
     private List<ProdottoInMagazzino> listaProdottiReal;  //mi serve per la visualizzazione nel front
 
+    private List<CarrelloItem> lista;
+
     public Carrello(){
         totale = 0d;
         map = new HashMap<>();
         listaProdottiReal = new LinkedList<>();
+
+        lista = new LinkedList<>();
     }
 
     public void incrementa(int codice_prodotto, int qta) {
-        //TODO prezzo totale
-
         if(map.containsKey(codice_prodotto)){
             int nuovaQta = qta + map.get(codice_prodotto);
             map.replace(codice_prodotto, nuovaQta);
@@ -36,7 +38,6 @@ public class Carrello {
 
     public void decrementa(int codice_prodotto){
         map.remove(codice_prodotto);
-        //TODO prezzo totale
     }
 
 }
