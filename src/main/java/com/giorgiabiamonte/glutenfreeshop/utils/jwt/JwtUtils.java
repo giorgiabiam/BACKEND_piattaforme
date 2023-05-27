@@ -16,7 +16,7 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    @Value("7200000")  // TODO durata token in millisecondi
+    @Value("7200000")  // durata token in millisecondi
     private int jwtExpiration;
     @Value("SecretKey")
     private String secret;
@@ -24,8 +24,6 @@ public class JwtUtils {
     private Algorithm algorithm;
     private JWTVerifier verifier;
 
-    //da repo github Flesca
-    //https://github.com/sflesca/psw2023/blob/master/src/main/java/com/securityexample/demosecurityjwtjpa/security/jwt/JwtUtils.java#L8
     @PostConstruct
     public void init(){
         this.algorithm =  Algorithm.HMAC256(secret);

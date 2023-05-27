@@ -21,9 +21,6 @@ import java.util.*;
 @Table(name="Utente")
 public class Utente implements UserDetails, Serializable {
 
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-//    List<Role> roles;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID", nullable=false)
@@ -41,12 +38,6 @@ public class Utente implements UserDetails, Serializable {
     //@Pattern(regexp = "") //TODO non si accettano spazi bianchi
     private String password;
 
-//    @Column(name="convenzionato", nullable=false)
-//    private boolean convenzionato;
-
-//    @Column(name="saldo")
-//    private double saldo;
-
     @Column(name="indirizzo", nullable = false)
     //@NotBlank
     private String indirizzo;
@@ -61,6 +52,9 @@ public class Utente implements UserDetails, Serializable {
     //@NotBlank
     private String cognome;
 
+    @Column(name="ruolo", nullable=false)
+    private String ruolo;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "acquirente")
     private List<Acquisto> listaAcquisti = new ArrayList<>();
 
@@ -70,8 +64,9 @@ public class Utente implements UserDetails, Serializable {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("USER"));
-//        this.roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRoleName())));
+        //"USER"
+        authorities.add(new SimpleGrantedAuthority(this.ruolo ));
+        System.out.println("grole    "+ this.ruolo);
         return authorities;
     }
 

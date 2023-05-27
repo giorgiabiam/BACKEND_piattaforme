@@ -49,3 +49,23 @@ GET https://localhost:8443/prodotti
 
 
 
+
+###
+POST https://localhost:8443/utenti/auth/login
+Content-Type: application/json
+
+
+{"username": "adminglf", "password": "adminglf"}
+
+###
+
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
+###
+GET https://localhost:8443/admin/userlist
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
+##
+
+###
+GET https://localhost:8443/admin/acquistilist
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
+##

@@ -30,8 +30,17 @@ public class InitDB implements CommandLineRunner {
         u.setPassword(passwordEncoder.encode("12345"));
         u.setUsername("giobiam");
         u.setIndirizzo("via aldo moro");
-
+        u.setRuolo("USER");
         ur.save(u);
+
+        Utente u1=new Utente();
+        u1.setNome("adminglf");
+        u1.setCognome("adminglf");
+        u1.setPassword(passwordEncoder.encode("adminglf"));
+        u1.setUsername("adminglf");
+        u1.setIndirizzo("via del campo");
+        u1.setRuolo("ADMIN");
+        ur.save(u1);
     }
 
     private void initProdotti() {

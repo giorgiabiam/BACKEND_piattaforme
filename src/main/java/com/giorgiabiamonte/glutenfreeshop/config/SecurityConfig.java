@@ -33,8 +33,10 @@ public class SecurityConfig {
                         .requestMatchers("/utenti/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
                         .requestMatchers("/carrello/**").permitAll()
-                        .requestMatchers("/carrello/nuova").permitAll()
+                      //  .requestMatchers("/carrello/**").permitAll()
                         .requestMatchers("/acquisti/**").authenticated()
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+
 //                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,6 +1,7 @@
 package com.giorgiabiamonte.glutenfreeshop.services;
 
 import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
+import com.giorgiabiamonte.glutenfreeshop.models.CarrelloItem;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Acquisto;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoAcquistato;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
@@ -22,9 +23,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AcquistoService {
 
-//    @Autowired
-//    private EntityManager entityManager;
-
     private final AcquistoRepository acquisto_repo;
     private final UtenteRepository utente_repo;
     private final ProdottoAcquistatoRepo acquistatoRepo;
@@ -38,19 +36,18 @@ public class AcquistoService {
     @Transactional (readOnly = false)
     public Acquisto newAcquisto(Carrello carrello, Integer IDutente) throws QuantitaNonDisponibile {
         List<ProdottoAcquistato> listaProd = new LinkedList<>();
-        for(int i : carrello.getMap().keySet()){
-            //TODO controllo quantità
-            ProdottoInMagazzino preal = prodottoRepo.findByCodice(i);
-            int qta_acquistata = carrello.getMap().get(i);
+        for(CarrelloItem item: carrello.getLista()){
+
+            ProdottoInMagazzino preal = prodottoRepo.findByCodice(item.getProdotto().getCodice());
+            int qta_acquistata = item.getQta_acquist();
             if (  (preal.getQta() - qta_acquistata) < 0 ){
                 throw new QuantitaNonDisponibile();
             }
-
             else{
-                int nuovaQta = preal.getQta() - carrello.getMap().get(i);
+                int nuovaQta = preal.getQta() - item.getQta_acquist();
                 preal.setQta(nuovaQta);
                 //TODO aggiornare l'entità prodotto visto che ho modificato la quantità
-//                prodottoRepo.save(preal); // check
+                prodottoRepo.save(preal);
 
                 ProdottoAcquistato pa = new ProdottoAcquistato();
                 pa.setProdottoReale(preal);
@@ -67,12 +64,14 @@ public class AcquistoService {
         acquisto.setAcquirente(u);
         acquisto.setTot(carrello.getTotale());
         acquisto.setListaProdotti(listaProd);
-//        entityManager.refresh(acquisto); // TODO serve ?
         acquisto_repo.save(acquisto);
         return  acquisto;
     }
 
     public Acquisto getAcquisto(int idAcq) {
         return acquisto_repo.findAcquistoByID(idAcq);
+    }
+    public List<Acquisto> getAll() {
+        return acquisto_repo.findAll();
     }
 }
