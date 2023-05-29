@@ -31,7 +31,7 @@ public class CarrelloController {
         return carrello;
     }
 
-    @PostMapping(value = "/aggiungicarrelloitem")
+    @PostMapping
     public Carrello add(@RequestBody CarrelloRequest req){
         System.out.println("carrello request" + req.toString());
         if( !prepo.existsByCodice(req.getCodice_prodotto()) ){
@@ -39,7 +39,9 @@ public class CarrelloController {
             return null;
         }
         else{
+
             ProdottoInMagazzino pReale = prepo.findByCodice(req.getCodice_prodotto());
+
             CarrelloItem item1=carrello.getLista().stream().filter(x->{
                 boolean b = x.getProdotto().getCodice() == req.getCodice_prodotto();
                 return b;
@@ -52,7 +54,6 @@ public class CarrelloController {
                 return item;
             });
             item1.setQta_acquist(req.getQta());
-            System.out.println("ssssssssssssssssssssssssssssssssssssss"+item1);
             carrello.setTotale( calcolaTot_nuovo(carrello.getLista()) );
             System.out.println("carrello dopo aggiunta nuova---" +carrello.toString());
             return carrello;

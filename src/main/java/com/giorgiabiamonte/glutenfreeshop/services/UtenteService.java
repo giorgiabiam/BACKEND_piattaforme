@@ -31,27 +31,17 @@ public class UtenteService {
     public Utente findByUsername(String username){ return ur.findByUsername(username); }
 
     @Transactional
-    public Utente login(String username, String password){
-        if( !ur.existsByUsernameAndPassword(username, password) ){   //username o password errati
-            return null;
-        }
-        else{
-            Utente u = ur.findByUsername(username);
-            return u;
-        }
-    }
-
-    @Transactional
     public Utente signin(Utente nuovoUtente){
-        //TODO usare BCrypt per la password
+        System.out.println("--------"+ nuovoUtente);
         if( !ur.existsByUsername(nuovoUtente.getUsername()) ){
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             Utente u = Utente.builder().username(nuovoUtente.getUsername()).password(encoder.encode(nuovoUtente.getPassword()) )
-                    .nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo()).build();
+                    .ruolo(nuovoUtente.getRuolo()).nome(nuovoUtente.getNome()).cognome(nuovoUtente.getCognome()).indirizzo(nuovoUtente.getIndirizzo()).build();
             ur.save(u);
             return u;
         }
-        else{ //username già utilizzato
+        else{
+            System.out.println("username già utilizzato");
             return null;
         }
     }

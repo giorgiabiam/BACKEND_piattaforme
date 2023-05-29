@@ -20,8 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthService {
 
     @Autowired
-    private UtenteRepository urepo;
-    @Autowired
     private final AuthenticationManager authenticationManager;
     @Autowired
     private JwtUtils jwtUtils;
@@ -30,6 +28,15 @@ public class AuthService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         Utente utente = (Utente) authentication.getPrincipal();
-        return jwtUtils.generateToken(utente.getUsername());
+        return jwtUtils.generateToken(utente.getUsername(), utente.getRuolo());
     }
+
+//    public String registrazione(Utente u) {
+//        System.out.println("NEL AUTH SERVICE");
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(u.getUsername(), u.getPassword()));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        Utente utente = (Utente) authentication.getPrincipal();
+//
+//        return jwtUtils.generateToken(utente.getUsername(), utente.getRuolo());
+//    }
 }

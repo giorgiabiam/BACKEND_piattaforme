@@ -23,12 +23,6 @@ public class UtenteController {
     private UtenteService us;
     private final AuthService authService;
 
-    @GetMapping
-    public ResponseEntity<List<Utente>> getAll(){  //non lo chiamo mai
-        List<Utente> utenti= us.getAll();
-        return new ResponseEntity<>(utenti, HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Utente> getUtenteByID(@PathVariable("id") Integer id){
         Utente utente = us.findByID(id);
@@ -37,22 +31,27 @@ public class UtenteController {
 
     @PostMapping(value = "/auth/login", consumes = "application/json;charset=UTF-8")
     public ResponseEntity<JwtResponse> login(@RequestBody LoginRequest req) {
-        System.out.println("sono nel controller login");
         String jwt = authService.authenticate(req);
         Utente utente = us.findByUsername(req.getUsername());
         JwtResponse res = new JwtResponse(jwt, utente.getID());
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/auth/register")
-    public ResponseEntity<Utente> registrazione( @RequestBody Utente nuovoUtente){
+    @PostMapping(value = "/auth/registrazione")
+    public ResponseEntity<Utente> registrazione(@RequestBody Utente nuovoUtente){
         Utente u = us.signin(nuovoUtente);
-        if(u==null){  //username già utilizzato
+        System.out.println("NEL CONTROLLER dopo il save(u) " + nuovoUtente);
+        if(u==null){
             System.out.println("registrazione non riuscita");
-            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-            System.out.println("registrazione riuscita per "+nuovoUtente.getNome());
+//            String jwt = authService.registrazione(u);
+//            System.out.println("JWT  "+jwt);
+//            JwtResponse res = new JwtResponse(jwt, u.getID());
+//
+//            System.out.println("registrazione riuscita----"+ res);
+
             return new ResponseEntity<>(u, HttpStatus.CREATED);
         }
     }

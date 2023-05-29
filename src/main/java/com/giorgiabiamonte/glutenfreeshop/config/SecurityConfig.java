@@ -33,7 +33,6 @@ public class SecurityConfig {
                         .requestMatchers("/utenti/**").permitAll()
                         .requestMatchers("/prodotti/**").permitAll()
                         .requestMatchers("/carrello/**").permitAll()
-                      //  .requestMatchers("/carrello/**").permitAll()
                         .requestMatchers("/acquisti/**").authenticated()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
 

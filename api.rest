@@ -46,14 +46,15 @@ GET https://localhost:8443/utenti/1
 ###
 GET https://localhost:8443/prodotti
 
+###
+POST https://localhost:8443/utenti/auth/registrazione
+Content-Type: application/json
 
-
-
+{"username": "prova", "password": "prova", "nome": "prova", "cognome": "prova", "indirizzo": "prova", "ruolo": "USER"}
 
 ###
 POST https://localhost:8443/utenti/auth/login
 Content-Type: application/json
-
 
 {"username": "adminglf", "password": "adminglf"}
 
@@ -62,10 +63,8 @@ Content-Type: application/json
 @token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
 ###
 GET https://localhost:8443/admin/userlist
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
-##
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxODI1MDAsImlhdCI6MTY4NTE3NTMwMCwidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.0zkeuHq__Ld5Fo1EQrUzwUgjrSQnNGFfG8zajLSwlYY
 
 ###
 GET https://localhost:8443/admin/acquistilist
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxMTc4NjMsImlhdCI6MTY4NTExMDY2MywidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.2W0hlvUM_XSQqI_OECSQJdaGFEGEARDfHJKUMXIYn4s
-##
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2ODUxODI1MDAsImlhdCI6MTY4NTE3NTMwMCwidXNlcm5hbWUiOiJhZG1pbmdsZiJ9.0zkeuHq__Ld5Fo1EQrUzwUgjrSQnNGFfG8zajLSwlYY

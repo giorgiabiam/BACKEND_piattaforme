@@ -23,7 +23,6 @@ public class ProdottoAcquistato {
 
     @ManyToOne
     @JoinColumn(name="prodotto_reale")
-    @JsonIgnore
     private ProdottoInMagazzino prodottoReale;
 
 }

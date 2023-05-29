@@ -30,17 +30,18 @@ public class JwtUtils {
         this.verifier = JWT.require(algorithm).build();
     }
 
-    public String generateToken(String username){
-        System.out.println("sono in jwt utils");
-
+    public String generateToken(String username, String ruolo){
+        System.out.println("NEL GENERATE TOKEN "+username);
         return  JWT.create()
                 .withIssuedAt(new Date())
                 .withExpiresAt(Date.from(Instant.now().plus(jwtExpiration, ChronoUnit.MILLIS)))
                 .withClaim("username", username)
+                .withClaim("ruolo", ruolo)
                 .sign(Algorithm.HMAC256(secret));
     }
 
     public boolean validateToken(String token){
+        System.out.println("NEL VALIDATE TOKEN "+ token);
         try {
             DecodedJWT decodedJWT = verifier.verify(token);
             if (!(decodedJWT.getExpiresAt().after(new Date()))){
@@ -60,4 +61,11 @@ public class JwtUtils {
         DecodedJWT decodedJWT = verifier.verify(token);
         return decodedJWT.getClaim("username").asString();
     }
+
+
+    public String extractRoleFromToken(String token){
+        DecodedJWT decodedJWT = verifier.verify(token);
+        return decodedJWT.getClaim("ruolo").asString();
+    }
+
 }

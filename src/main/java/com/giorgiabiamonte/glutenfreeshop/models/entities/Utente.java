@@ -1,6 +1,7 @@
 package com.giorgiabiamonte.glutenfreeshop.models.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.io.Serializable;
 import java.util.*;
 
-@Data
+@Data @ToString
 @Builder
 @NoArgsConstructor @AllArgsConstructor
 @Entity
@@ -27,46 +28,32 @@ public class Utente implements UserDetails, Serializable {
     private Integer ID;
 
     @Column(name="username", nullable=false , unique = true)
-    //@Size(min = 2, max = 15)
-    //@NotBlank //equivale a not null e lunghezza dopo trim >0
-    //@Pattern(regexp = "") //TODO non si accettano spazi bianchi
     private String username;
 
     @Column(name="password", nullable=false)
-    //@Size(min = 4, max = 15)
-    //@NotBlank
-    //@Pattern(regexp = "") //TODO non si accettano spazi bianchi
     private String password;
 
     @Column(name="indirizzo", nullable = false)
-    //@NotBlank
     private String indirizzo;
 
     @Column(name="nome", nullable=false)
-    //@Size(min = 2, max = 15)
-    //@NotBlank
     private String nome;
 
     @Column(name="cognome", nullable=false)
-    //@Size(min = 2, max = 15)
-    //@NotBlank
     private String cognome;
 
     @Column(name="ruolo", nullable=false)
     private String ruolo;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "acquirente")
+    @JsonIgnore
     private List<Acquisto> listaAcquisti = new ArrayList<>();
-
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<ProdottoInMagazzino> preferiti = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        //"USER"
         authorities.add(new SimpleGrantedAuthority(this.ruolo ));
-        System.out.println("grole    "+ this.ruolo);
+        System.out.println("ruolo  "+ this.ruolo);
         return authorities;
     }
 

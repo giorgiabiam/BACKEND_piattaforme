@@ -25,7 +25,7 @@ import java.nio.charset.StandardCharsets;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
-    private final CustomerUserDetailsService customerUserDetailsService; // TODO
+    private final CustomerUserDetailsService customerUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -33,14 +33,21 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String token = null;
         String header = request.getHeader("Authorization");
-        System.out.println("header dalla richiesta: " + header);
 
         if (StringUtils.hasText(header) && header.startsWith("Bearer ")) {
             token = header.substring(7);
         }
 
+        System.out.println("TOKEN in jwtFilter " + token);
+
+
         if (token != null && jwtUtils.validateToken(token)) {
             String username = jwtUtils.extractUsernameFromToken(token);
+
+            String ruolo = jwtUtils.extractRoleFromToken(token);
+            System.out.println("RUOLO NEL TOKEN---" + ruolo);
+
+
             UserDetails userDetails = customerUserDetailsService.loadUserByUsername(username);
             if (userDetails != null) {
                 log.info("Authorities {}", userDetails.getAuthorities());
@@ -52,6 +59,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
+
         filterChain.doFilter(request, response);
     }
 

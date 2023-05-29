@@ -16,9 +16,6 @@ import java.util.List;
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 @CrossOrigin(origins="*") //TODO   "http://localhost:4200"
-
-
-
 public class AdminController {
     @Autowired
     private UtenteService us;
@@ -27,14 +24,15 @@ public class AdminController {
 
     @GetMapping("/userlist")
     public ResponseEntity<List<Utente>> getUtenti(){
-        List<Utente> utente = us.getAll();
-        return new ResponseEntity<>(utente, HttpStatus.OK);
+        List<Utente> utenti = us.getAll();
+        if(utenti==null){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(utenti, HttpStatus.OK);
     }
     @GetMapping("/acquistilist")
     public ResponseEntity<List<Acquisto>> getAcquisti() {
         List<Acquisto> acquisti = as.getAll();
         return new ResponseEntity<>(acquisti, HttpStatus.OK);
     }
-
-
 }
