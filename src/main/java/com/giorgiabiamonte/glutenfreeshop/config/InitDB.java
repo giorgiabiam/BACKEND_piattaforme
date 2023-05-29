@@ -25,11 +25,11 @@ public class InitDB implements CommandLineRunner {
     private void initUtenti() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Utente u=new Utente();
-        u.setNome("giorgia");
-        u.setCognome("biamonte");
+        u.setNome("Giorgia");
+        u.setCognome("Biamonte");
         u.setPassword(passwordEncoder.encode("12345"));
         u.setUsername("giobiam");
-        u.setIndirizzo("via aldo moro");
+        u.setIndirizzo("Via Aldo Moro");
         u.setRuolo("USER");
         ur.save(u);
 
@@ -38,7 +38,7 @@ public class InitDB implements CommandLineRunner {
         u1.setCognome("adminglf");
         u1.setPassword(passwordEncoder.encode("adminglf"));
         u1.setUsername("adminglf");
-        u1.setIndirizzo("via del campo");
+        u1.setIndirizzo("Via del campo");
         u1.setRuolo("ADMIN");
         ur.save(u1);
     }

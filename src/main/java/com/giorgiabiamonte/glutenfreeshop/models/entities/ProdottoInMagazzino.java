@@ -29,7 +29,7 @@ public class ProdottoInMagazzino {
     private int qta;
 
     @Column(name="img")
-    private String img; //url dell'immagine del prodotto //TODO
+    private String img;
 
     @Column(name="descrizione")
     private String descrizione;

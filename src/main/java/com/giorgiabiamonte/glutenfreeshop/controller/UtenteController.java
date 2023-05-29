@@ -46,12 +46,6 @@ public class UtenteController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         else{
-//            String jwt = authService.registrazione(u);
-//            System.out.println("JWT  "+jwt);
-//            JwtResponse res = new JwtResponse(jwt, u.getID());
-//
-//            System.out.println("registrazione riuscita----"+ res);
-
             return new ResponseEntity<>(u, HttpStatus.CREATED);
         }
     }

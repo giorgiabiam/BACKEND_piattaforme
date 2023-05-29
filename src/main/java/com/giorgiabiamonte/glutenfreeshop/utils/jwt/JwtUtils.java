@@ -57,7 +57,6 @@ public class JwtUtils {
     }
 
     public String extractUsernameFromToken(String token) {
-        //da repo github Flesca
         DecodedJWT decodedJWT = verifier.verify(token);
         return decodedJWT.getClaim("username").asString();
     }

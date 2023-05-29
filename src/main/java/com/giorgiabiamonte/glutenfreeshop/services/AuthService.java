@@ -2,7 +2,6 @@ package com.giorgiabiamonte.glutenfreeshop.services;
 
 import com.giorgiabiamonte.glutenfreeshop.models.LoginRequest;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
-import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import com.giorgiabiamonte.glutenfreeshop.utils.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +29,4 @@ public class AuthService {
         Utente utente = (Utente) authentication.getPrincipal();
         return jwtUtils.generateToken(utente.getUsername(), utente.getRuolo());
     }
-
-//    public String registrazione(Utente u) {
-//        System.out.println("NEL AUTH SERVICE");
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(u.getUsername(), u.getPassword()));
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        Utente utente = (Utente) authentication.getPrincipal();
-//
-//        return jwtUtils.generateToken(utente.getUsername(), utente.getRuolo());
-//    }
 }

@@ -46,7 +46,7 @@ public class AcquistoService {
             else{
                 int nuovaQta = preal.getQta() - item.getQta_acquist();
                 preal.setQta(nuovaQta);
-                //TODO aggiornare l'entità prodotto visto che ho modificato la quantità
+
                 prodottoRepo.save(preal);
 
                 ProdottoAcquistato pa = new ProdottoAcquistato();
@@ -57,7 +57,6 @@ public class AcquistoService {
                 listaProd.add(pa);
             }
         }
-        //TODO scalare il totale dal saldo
         Acquisto acquisto = new Acquisto();
         acquisto.setDataAcquisto(new Date().toString());
         Utente u = utente_repo.findByID(IDutente);
