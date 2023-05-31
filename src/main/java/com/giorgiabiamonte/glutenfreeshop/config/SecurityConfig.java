@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -35,17 +34,12 @@ public class SecurityConfig {
                         .requestMatchers("/carrello/**").permitAll()
                         .requestMatchers("/acquisti/**").authenticated()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
-
-//                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
 
     }
-
-   //repo github esercitatore
-  //https://github.com/Franco7Scala/SpringProjectPSW/blob/master/src/main/java/it/frankladder/fakestore/configurations/SecurityConfiguration.java
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

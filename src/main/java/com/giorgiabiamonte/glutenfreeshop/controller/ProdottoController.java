@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/prodotti")
 @Slf4j
-@CrossOrigin(origins="*")  //TODO
+@CrossOrigin(origins="http://localhost:4200")
 public class ProdottoController {
 
     @Autowired

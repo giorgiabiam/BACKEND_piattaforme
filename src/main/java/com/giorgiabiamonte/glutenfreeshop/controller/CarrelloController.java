@@ -4,7 +4,6 @@ import com.giorgiabiamonte.glutenfreeshop.models.Carrello;
 import com.giorgiabiamonte.glutenfreeshop.models.CarrelloItem;
 import com.giorgiabiamonte.glutenfreeshop.models.CarrelloRequest;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.ProdottoInMagazzino;
-import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.repositories.ProdottoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping(value = "/carrello")
-@CrossOrigin(origins="*")  //TODO
+@CrossOrigin(origins="http://localhost:4200")
 public class CarrelloController {
     @Autowired
     Carrello carrello;

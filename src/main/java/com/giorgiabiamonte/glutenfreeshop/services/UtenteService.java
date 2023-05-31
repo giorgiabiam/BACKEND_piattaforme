@@ -3,6 +3,7 @@ package com.giorgiabiamonte.glutenfreeshop.services;
 import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
