@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.*;
 
 @Getter @Setter @ToString
 @Component
-//@SessionScope   //TODO ?
 public class Carrello {
     private double totale;
     private List<CarrelloItem> lista;
