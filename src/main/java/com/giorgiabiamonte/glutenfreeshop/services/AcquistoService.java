@@ -33,7 +33,7 @@ public class AcquistoService {
         return acquisto_repo.findByAcquirente(utente_repo.findById(idUtente).get());
     }
 
-    @Transactional (readOnly = false)
+    @Transactional
     public Acquisto newAcquisto(Carrello carrello, Integer IDutente) throws QuantitaNonDisponibile {
         List<ProdottoAcquistato> listaProd = new LinkedList<>();
         for(CarrelloItem item: carrello.getLista()){

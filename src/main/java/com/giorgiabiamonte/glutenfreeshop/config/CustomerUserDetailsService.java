@@ -1,6 +1,5 @@
 package com.giorgiabiamonte.glutenfreeshop.config;
 
-import com.giorgiabiamonte.glutenfreeshop.models.entities.Utente;
 import com.giorgiabiamonte.glutenfreeshop.repositories.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

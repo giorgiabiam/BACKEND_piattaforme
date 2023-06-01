@@ -53,7 +53,7 @@ public class InitDB implements CommandLineRunner {
                 .img("https://localhost:8443/images/Nutrifreepanbauletto.jpg").build();
 
 
-        ProdottoInMagazzino p2 = ProdottoInMagazzino.builder().nome("Pizza Mergherita").qta(100).prezzo(4.69)
+        ProdottoInMagazzino p2 = ProdottoInMagazzino.builder().nome("Pizza Margherita").qta(100).prezzo(4.69)
                 .descrizione("Pizza margehrita senza glutine e senza lattosio (prodotto surgelato) - Buitoni ")
                 .img("https://localhost:8443/images/PIZZAMARGHERITABUITONI.jpg").build();
 

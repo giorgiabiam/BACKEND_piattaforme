@@ -20,18 +20,17 @@ public class Acquisto {
     @Column(name="data_acquisto", nullable = false)
     private String dataAcquisto;
 
-    // @Transient
     @Column(name="tot", nullable = false)
     private double tot;
 
-    public double calcolaTot() { //getTot()
-        double tot=0d;
-        List<ProdottoAcquistato> prodotti=getListaProdotti();
-        for(ProdottoAcquistato p : prodotti){
-            tot += p.getQtaAcquistata() * p.getProdottoReale().getPrezzo();
-        }
-        return tot;
-     }
+//    public double calcolaTot() { //getTot()
+//        double tot=0d;
+//        List<ProdottoAcquistato> prodotti=getListaProdotti();
+//        for(ProdottoAcquistato p : prodotti){
+//            tot += p.getQtaAcquistata() * p.getProdottoReale().getPrezzo();
+//        }
+//        return tot;
+//     }
 
     //più acquisti per lo stesso acquirente
     @ManyToOne
